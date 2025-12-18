@@ -1,0 +1,31 @@
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+int main() {
+    int a, b;
+    // Reading two integers separated by a newline or space
+    if (!(cin >> a >> b)) return 0;
+
+    // Array for quick access to English words (index 0 is a placeholder)
+    string words[] = {"", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
+
+    for (int i = a; i <= b; i++) {
+        if (i >= 1 && i <= 9) {
+            // Print corresponding word from our array
+            cout << words[i] << endl;
+        } 
+        else if (i > 9) {
+            // Check if even or odd using modulo
+            if (i % 2 == 0) {
+                cout << "even" << endl;
+            } else {
+                cout << "odd" << endl;
+            }
+        }
+    }
+
+    return 0;
+}
