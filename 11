@@ -1,0 +1,41 @@
+#include <sstream>
+#include <vector>
+#include <iostream>
+
+using namespace std;
+
+vector<int> parseInts(string str) {
+    // Initialize stringstream with the input string
+    stringstream ss(str);
+    vector<int> result;
+    
+    int number;
+    char comma;
+
+    // Standard way to parse: extract an integer
+    // The expression (ss >> number) evaluates to true if an int was found
+    while (ss >> number) {
+        // Add the successfully parsed integer to the vector
+        result.push_back(number);
+        
+        // Attempt to extract the comma to clear it from the stream
+        // If it's the end of the string, this simply fails silently
+        ss >> comma;
+    }
+    
+    return result;
+}
+
+int main() {
+    string str;
+    cin >> str;
+    
+    vector<int> integers = parseInts(str);
+    
+    // Print each integer on a new line
+    for(int i = 0; i < integers.size(); i++) {
+        cout << integers[i] << "\n";
+    }
+    
+    return 0;
+}
