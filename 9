@@ -1,0 +1,38 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int main() {
+    int n, q;
+    // Read n (number of arrays) and q (number of queries)
+    if (!(cin >> n >> q)) return 0;
+
+    // Create a vector of vectors to store our variable-length arrays
+    vector<vector<int>> data(n);
+
+    // Fill the variable-length arrays
+    for (int i = 0; i < n; i++) {
+        int k;
+        cin >> k; // Number of elements in the current array
+        
+        // Resize the inner vector to hold k elements
+        data[i].resize(k);
+        
+        for (int j = 0; j < k; j++) {
+            cin >> data[i][j];
+        }
+    }
+
+    // Process the queries
+    for (int k = 0; k < q; k++) {
+        int i, j;
+        cin >> i >> j;
+        
+        // Access the element at array i, index j
+        // data[i] gives the inner vector, [j] gives the specific element
+        cout << data[i][j] << endl;
+    }
+
+    return 0;
+}
