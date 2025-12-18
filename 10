@@ -1,0 +1,31 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main() {
+    string a, b;
+    
+    // Read the two strings
+    cin >> a >> b;
+
+    // 1. Print the lengths of a and b
+    cout << a.size() << " " << b.size() << endl;
+
+    // 2. Print the concatenation of a and b
+    cout << a + b << endl;
+
+    // 3. Swap the first characters and print
+    // We create copies so we don't lose the original strings if needed later
+    string a_prime = a;
+    string b_prime = b;
+
+    // Perform the swap using a temporary variable
+    char temp = a_prime[0];
+    a_prime[0] = b_prime[0];
+    b_prime[0] = temp;
+
+    cout << a_prime << " " << b_prime << endl;
+
+    return 0;
+}
