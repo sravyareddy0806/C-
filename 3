@@ -1,0 +1,28 @@
+#include <iostream>
+#include <cstdio>
+
+using namespace std;
+
+int main() {
+    // Declare variables for each data type
+    int i;
+    long l;
+    char ch;
+    float f;
+    double d;
+
+    // Read the space-separated values using scanf
+    // Note: %f is for float, %lf is for double
+    scanf("%d %ld %c %f %lf", &i, &l, &ch, &f, &d);
+
+    // Print each value on a new line
+    // %.3f specifies 3 decimal places for the float
+    // %.9lf specifies 9 decimal places for the double
+    printf("%d\n", i);
+    printf("%ld\n", l);
+    printf("%c\n", ch);
+    printf("%.3f\n", f);
+    printf("%.9lf\n", d);
+
+    return 0;
+}
