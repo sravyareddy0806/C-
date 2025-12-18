@@ -1,0 +1,68 @@
+#include <iostream>
+#include <vector>
+#include <string>
+#include <map>
+#include <sstream>
+
+using namespace std;
+
+int main() {
+    int n, q;
+    cin >> n >> q;
+    cin.ignore(); // Clear the newline character after n and q
+
+    map<string, string> hrml_map;
+    vector<string> tag_stack;
+
+    for (int i = 0; i < n; i++) {
+        string line;
+        getline(cin, line);
+        
+        // Remove brackets to make parsing easier
+        line.erase(0, 1); // remove '<'
+        if (line[0] == '/') {
+            // Closing tag: pop from stack
+            tag_stack.pop_back();
+        } else {
+            // Opening tag
+            if (line.back() == '>') line.pop_back(); // remove '>'
+            
+            stringstream ss(line);
+            string tag_name, attr, eq, val;
+            
+            ss >> tag_name;
+            
+            // Generate current path (e.g., tag1.tag2)
+            string current_path = "";
+            for (const string& t : tag_stack) {
+                current_path += (current_path.empty() ? "" : ".") + t;
+            }
+            current_path += (current_path.empty() ? "" : ".") + tag_name;
+            
+            tag_stack.push_back(tag_name);
+
+            // Parse attributes: attr = "value"
+            while (ss >> attr >> eq >> val) {
+                // Remove quotes from "value" and potential '>' if attached
+                if (val.back() == '>') val.pop_back();
+                val = val.substr(1, val.size() - 2); 
+                
+                // Store in map: tag1.tag2~attr -> value
+                hrml_map[current_path + "~" + attr] = val;
+            }
+        }
+    }
+
+    // Process Queries
+    for (int i = 0; i < q; i++) {
+        string query;
+        getline(cin, query);
+        if (hrml_map.count(query)) {
+            cout << hrml_map[query] << endl;
+        } else {
+            cout << "Not Found!" << endl;
+        }
+    }
+
+    return 0;
+}
