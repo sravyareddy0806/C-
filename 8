@@ -1,0 +1,32 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int main() {
+    int n;
+    // Read the size of the array
+    if (!(cin >> n)) return 0;
+
+    // In C++, we can use a vector or a variable-length array. 
+    // A vector is often safer and more flexible in C++.
+    int arr[n]; 
+
+    // Read n integers into the array
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+
+    // Print the integers in reverse order
+    // Start at index n-1, stop after index 0
+    for (int i = n - 1; i >= 0; i--) {
+        cout << arr[i];
+        
+        // Add a space between numbers, but not after the last one
+        if (i > 0) {
+            cout << " ";
+        }
+    }
+
+    return 0;
+}
