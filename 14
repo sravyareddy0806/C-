@@ -1,0 +1,61 @@
+#include <iostream>
+#include <vector>
+#include <numeric> // For std::accumulate
+
+using namespace std;
+
+class Student {
+private:
+    // Array to hold 5 exam scores
+    int scores[5];
+
+public:
+    // Reads 5 integers from stdin and saves them to scores
+    void input() {
+        for (int i = 0; i < 5; i++) {
+            cin >> scores[i];
+        }
+    }
+
+    // Returns the sum of the student's scores
+    int calculateTotalScore() {
+        int total = 0;
+        for (int i = 0; i < 5; i++) {
+            total += scores[i];
+        }
+        return total;
+        
+        /* Alternative C++11 approach using <numeric>:
+           return std::accumulate(scores, scores + 5, 0); 
+        */
+    }
+};
+
+int main() {
+    int n; // number of students
+    cin >> n;
+    
+    // Create an array of Student objects
+    Student *s = new Student[n]; 
+    
+    for(int i = 0; i < n; i++){
+        s[i].input();
+    }
+
+    // Calculate Kristen's score (the first student)
+    int kristen_score = s[0].calculateTotalScore();
+
+    // Determine how many students scored higher than Kristen
+    int count = 0; 
+    for(int i = 1; i < n; i++){
+        int total = s[i].calculateTotalScore();
+        if(total > kristen_score){
+            count++;
+        }
+    }
+
+    // Print result
+    cout << count;
+    
+    return 0;
+}
